@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
-    "@babel/register": "^7.7.7"
+    "@babel/register": "^7.7.7",
+    "nodemon": "^2.0.2"
   }
 }

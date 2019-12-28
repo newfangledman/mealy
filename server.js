@@ -1,6 +1,11 @@
 import express from 'express'
+import models from './models'
 import graphqlHTTP from 'express-graphql';
 import { buildSchema } from 'graphql';
+
+models.sequelize.sync().then(() => {
+  console.log("db")
+})
 
 var schema = buildSchema(`
   type Query {
