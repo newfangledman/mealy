@@ -4,7 +4,7 @@ services:
     image: mariadb
     volumes:
       - ./data:/var/lib/mysql
-      - ./schemas/mealy_dump.sql:/docker-entrypoint-initdb.d
+      - ./sql/mealy_dump.sql:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: dev
       MYSQL_DATABASE: mealy
