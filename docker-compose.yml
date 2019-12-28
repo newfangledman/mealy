@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  db:
+    image: mariadb
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./schemas/mealy_dump.sql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_DATABASE: mealy
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: dev
+    ports:
+      - "3306:3306"
+    expose:
+      # Opens port 3306 on the container
+      - "3306"
+volumes:
+  data:
