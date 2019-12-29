@@ -1,23 +1,26 @@
 export default (sequelize, DataTypes) => {
-  
-  const Meal = sequelize.define('meal', {
-    meal_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true
+  const Meal = sequelize.define(
+    "meal",
+    {
+      meal_id: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true
+      },
+      name: DataTypes.STRING,
+      description: DataTypes.STRING
     },
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-  }, {underscored: true});
+    { underscored: true }
+  );
 
   Meal.associate = function(models) {
     Meal.belongsToMany(models.ingredient, {
       through: models.mealingredient,
-      as: 'MealInIngredient',
-      foreignKey: 'meal_id'
-    })
+      as: "MealInIngredient",
+      foreignKey: "meal_id"
+    });
   };
-  
+
   return Meal;
 };
