@@ -8,7 +8,8 @@ export default (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true
       },
-      name: DataTypes.STRING
+      name: DataTypes.STRING,
+      description: DataTypes.STRING
     },
     { underscored: true }
   );
