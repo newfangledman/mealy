@@ -9,9 +9,10 @@ export default (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {underscored: true});
   Ingredient.associate = function(models) {
-    Ingredient.belongsToMany(models.Meal, {
-      through: models.MealIngredient,
+    Ingredient.belongsToMany(models.meal, {
+      through: models.mealingredient,
       as: 'IngredientsForMeal',
+      foreignKey: 'ingredient_id'
     })
   };
   return Ingredient;
