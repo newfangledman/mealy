@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   db:
-    image: mariadb
+    build: ./db
     volumes:
       - ./data:/var/lib/mysql
     environment:
