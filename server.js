@@ -1,18 +1,12 @@
 import express from "express";
 import models from "./models";
 import graphqlHTTP from "express-graphql";
+import schema from "./schema"
 import { buildSchema } from "graphql";
 
 models.sequelize.sync().then(() => {
   console.log("db");
 });
-
-var schema = buildSchema(`
-  type Query {
-    hello: String,
-    test: String
-  }
-`);
 
 var root = { hello: () => "Hello world!", test: () => "this is a test" };
 
@@ -21,7 +15,6 @@ app.use(
   "/graphql",
   graphqlHTTP({
     schema: schema,
-    rootValue: root,
     graphiql: true
   })
 );
