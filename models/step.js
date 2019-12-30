@@ -2,14 +2,15 @@ export default (sequelize, DataTypes) => {
   const Step = sequelize.define(
     "step",
     {
-      step_id: {
-        type: DataTypes.INTEGER(11),
+      id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
+      number: DataTypes.INTEGER,
       name: DataTypes.STRING,
-      description: DataTypes.STRING
+      description: DataTypes.TEXT('long')
     },
     { underscored: true }
   );
@@ -17,7 +18,7 @@ export default (sequelize, DataTypes) => {
     Step.belongsToMany(models.meal, {
       through: models.mealstep,
       as: "StepsForMeal",
-      foreignKey: "step_id"
+      foreignKey: "id"
     });
   };
   return Step;

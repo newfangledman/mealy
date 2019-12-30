@@ -2,14 +2,14 @@ export default (sequelize, DataTypes) => {
   const Ingredient = sequelize.define(
     "ingredient",
     {
-      ingredient_id: {
-        type: DataTypes.INTEGER(11),
+      id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
       name: DataTypes.STRING,
-      description: DataTypes.STRING
+      description: DataTypes.TEXT('long')
     },
     { underscored: true }
   );
@@ -17,7 +17,7 @@ export default (sequelize, DataTypes) => {
     Ingredient.belongsToMany(models.meal, {
       through: models.mealingredient,
       as: "IngredientsForMeal",
-      foreignKey: "ingredient_id"
+      foreignKey: "id"
     });
   };
   return Ingredient;

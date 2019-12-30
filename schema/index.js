@@ -1,55 +1,38 @@
-import {
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLInt,
-  GraphQLString
-} from "graphql";
 
-const mealType = new GraphQLObjectType({
-  name: "Meal",
-  fields: {
-    name: {
-      type: GraphQLString
-    },
-    description: {
-      type: GraphQLString
-    }
+export default `
+  type Meal {
+    id: ID!
+    type: String!
+    ingredients: [Ingredient!]!
+    steps: [Step!]!
   }
-});
-
-const ingredientType = new GraphQLObjectType({
-  name: "Ingredient",
-  fields: {
-    name: {
-      type: GraphQLString
-    },
-    description: {
-      type: GraphQLString
-    }
+  type Ingredient {
+    id: ID!
+    name: String
+    description: String!
+    meals: [Meal!]!
   }
-});
-
-const queryType = new GraphQLObjectType({
-  name: "Query",
-  fields: {
-    meal: {
-      type: mealType,
-      args: {
-        id: { type: GraphQLInt }
-      },
-      resolve: (source, { id }) => {
-        return "meal";
-      }
-    },
-    meals: {
-      type: new GraphQLList(mealType),
-      resolve: () => {
-        return "meals";
-      }
-    }
+  type Step {
+    id: ID!
+    number: Int
+    name: String
+    description: String!
+    meals: [Meal!]!
   }
-});
-
-export default new GraphQLSchema({
-  query: queryType
-});
+  type Query {
+    meals: [Meal!]!
+    meal(id: ID!): Meal
+    ingredients: [Ingredient!]!
+    ingredient(id: ID!): Ingredient
+    steps: [Step!]!
+    step(id: ID!): Step
+  }
+  type Mutation {
+    createMeal(name: String, description:String!): Ingredient!
+    updateMeal(id: ID!, name: String, description:String!): [Int!]!
+    deleteMeal(id: ID!): Int!
+    createIngredient(name: String, description:String!, mealId: String): Ingredient!
+    updateIngredient(id: ID!, name: String, description:String!): [Int!]!
+    deleteIngredient(id: ID!): Int!
+  }
+`;

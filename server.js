@@ -1,20 +1,53 @@
 import express from "express";
-import models from "./models";
-import graphqlHTTP from "express-graphql";
-import schema from "./schema"
+import { ApolloServer, gql } from "apollo-server-express";
+import faker from "faker";
+import times from "lodash.times";
+import random from "lodash.random";
+import typeDefs from "./schema";
+import resolvers from "./resolvers";
+import db from "./models";
 
-models.sequelize.sync().then(() => {
-  console.log("db");
+const playground = {
+  settings: {
+    "editor.cursorShape": "line"
+  }
+};
+
+const server = new ApolloServer({
+  typeDefs: gql(typeDefs),
+  resolvers,
+  context: { db },
+  playground
 });
 
-var root = { hello: () => "Hello world!", test: () => "this is a test" };
+const app = express();
+server.applyMiddleware({ app });
 
-var app = express();
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema: schema,
-    graphiql: true
-  })
-);
-app.listen(4000, () => console.log("Now browse to localhost:4000/graphql"));
+app.use(express.static("client"));
+
+db.sequelize.sync().then(() => {
+  // populate meal table with dummy data
+  db.meal.bulkCreate(
+    times(10, () => ({
+      name: faker.name.firstName(),
+      description: faker.lorem.sentence()
+    }))
+  );
+  // populate post table with dummy data
+  db.ingredient.bulkCreate(
+    times(10, () => ({
+      name: faker.lorem.sentence(),
+      description: faker.lorem.paragraph(),
+    }))
+  );
+    
+  db.mealingredient.bulkCreate(
+    times(10, () => ({
+      meal_id: random(1,10),
+      ingredient_id: random(1,10),
+    }))
+  )
+  app.listen({ port: 4000 }, () =>
+    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+  );
+});

@@ -2,14 +2,14 @@ export default (sequelize, DataTypes) => {
   const Meal = sequelize.define(
     "meal",
     {
-      meal_id: {
-        type: DataTypes.INTEGER(11),
+      id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
       name: DataTypes.STRING,
-      description: DataTypes.STRING
+      description: DataTypes.TEXT('long')
     },
     { underscored: true }
   );
@@ -18,12 +18,12 @@ export default (sequelize, DataTypes) => {
     Meal.belongsToMany(models.ingredient, {
       through: models.mealingredient,
       as: "MealInIngredient",
-      foreignKey: "meal_id"
+      foreignKey: "id"
     });
     Meal.belongsToMany(models.step, {
       through: models.mealstep,
       as: "MealInStep",
-      foreignKey: "step_id"
+      foreignKey: "id"
     });
   };
 

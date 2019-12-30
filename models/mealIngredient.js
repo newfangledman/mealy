@@ -1,13 +1,14 @@
 export default (sequelize, DataTypes) => {
   const MealIngredient = sequelize.define("mealingredient", {
-    meal_ingredient_id: {
-      type: DataTypes.INTEGER(11),
+    id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },
-    meal_id: DataTypes.INTEGER(11),
-    ingredient_id: DataTypes.INTEGER(11)
-  });
+    meal_id: DataTypes.INTEGER,
+    ingredient_id: DataTypes.INTEGER
+  },
+  { underscored: true });
   return MealIngredient;
 };

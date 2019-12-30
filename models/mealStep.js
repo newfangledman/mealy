@@ -1,13 +1,14 @@
 export default (sequelize, DataTypes) => {
   const MealStep = sequelize.define("mealstep", {
-    meal_step_id: {
-      type: DataTypes.INTEGER(11),
+    id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },
-    meal_id: DataTypes.INTEGER(11),
-    step_id: DataTypes.INTEGER(11)
-  });
+    meal_id: DataTypes.INTEGER,
+    step_id: DataTypes.INTEGER
+  },
+  { underscored: true });
   return MealStep;
 };
