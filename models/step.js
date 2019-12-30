@@ -1,8 +1,8 @@
 export default (sequelize, DataTypes) => {
-  const Meal = sequelize.define(
-    "meal",
+  const Step = sequelize.define(
+    "step",
     {
-      meal_id: {
+      step_id: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
         autoIncrement: true,
@@ -13,19 +13,12 @@ export default (sequelize, DataTypes) => {
     },
     { underscored: true }
   );
-
-  Meal.associate = function(models) {
-    Meal.belongsToMany(models.ingredient, {
-      through: models.mealingredient,
-      as: "MealInIngredient",
-      foreignKey: "meal_id"
-    });
-    Meal.belongsToMany(models.step, {
+  Step.associate = function(models) {
+    Step.belongsToMany(models.meal, {
       through: models.mealstep,
-      as: "MealInStep",
+      as: "StepsForMeal",
       foreignKey: "step_id"
     });
   };
-
-  return Meal;
+  return Step;
 };
