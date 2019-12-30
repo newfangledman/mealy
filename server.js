@@ -3,7 +3,7 @@ import { ApolloServer, gql } from "apollo-server-express";
 import faker from "faker";
 import times from "lodash.times";
 import random from "lodash.random";
-import typeDefs from "./schema";
+import { importSchema } from "graphql-import";
 import resolvers from "./resolvers";
 import db from "./models";
 
@@ -13,6 +13,7 @@ const playground = {
   }
 };
 
+const typeDefs = importSchema("./schema/index.graphql");
 const server = new ApolloServer({
   typeDefs: gql(typeDefs),
   resolvers,
@@ -37,16 +38,16 @@ db.sequelize.sync().then(() => {
   db.ingredient.bulkCreate(
     times(10, () => ({
       name: faker.lorem.sentence(),
-      description: faker.lorem.paragraph(),
+      description: faker.lorem.paragraph()
     }))
   );
-    
+
   db.mealingredient.bulkCreate(
     times(10, () => ({
-      meal_id: random(1,10),
-      ingredient_id: random(1,10),
+      meal_id: random(1, 10),
+      ingredient_id: random(1, 10)
     }))
-  )
+  );
   app.listen({ port: 4000 }, () =>
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
   );

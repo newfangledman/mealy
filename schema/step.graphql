@@ -1,0 +1,19 @@
+# import Meal from 'meal.graphql'
+
+type Step {
+    id: ID!
+    name: String
+    description: String!
+    meals: [Meal!]!
+}
+
+type Query {
+    steps: [Step!]!
+    step(id: ID!): Step
+}
+
+type Mutation {
+    createStep(name: String, description:String!): Step!
+    updateStep(id: ID!, name: String, description:String!): [Int!]!
+    deleteStep(id: ID!): Int!
+}

@@ -1,0 +1,19 @@
+# import Meal from 'meal.graphql'
+
+type Ingredient {
+    id: ID!
+    name: String
+    description: String!
+    meals: [Meal!]!
+}
+
+type Query {
+    ingredients: [Ingredient!]!
+    ingredient(id: ID!): Ingredient
+}
+
+type Mutation {
+    createIngredient(name: String, description:String!): Ingredient!
+    updateIngredient(id: ID!, name: String, description:String!): [Int!]!
+    deleteIngredient(id: ID!): Int!
+}

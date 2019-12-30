@@ -9,7 +9,7 @@ export default (sequelize, DataTypes) => {
         primaryKey: true
       },
       name: DataTypes.STRING,
-      description: DataTypes.TEXT('long')
+      description: DataTypes.TEXT("long")
     },
     { underscored: true }
   );

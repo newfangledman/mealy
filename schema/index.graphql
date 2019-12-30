@@ -1,0 +1,4 @@
+# import Query.*, Mutation.* from "ingredient.graphql"
+# import Query.*, Mutation.* from "meal.graphql"
+# import Query.*, Mutation.* from "step.graphql"
+

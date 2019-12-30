@@ -10,7 +10,7 @@ export default (sequelize, DataTypes) => {
       },
       number: DataTypes.INTEGER,
       name: DataTypes.STRING,
-      description: DataTypes.TEXT('long')
+      description: DataTypes.TEXT("long")
     },
     { underscored: true }
   );
