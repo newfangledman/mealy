@@ -1,8 +1,6 @@
-
+import ingredientResolver from "./ingredient";
 export default {
-    Query: {
-        ingredients: () => {
-            return [{name: "test", description: "here"}];
-        },
-    }
+  Query: {
+    ...ingredientResolver
+  }
 };

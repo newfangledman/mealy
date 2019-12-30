@@ -17,13 +17,12 @@ export default (sequelize, DataTypes) => {
   Meal.associate = function(models) {
     Meal.belongsToMany(models.ingredient, {
       through: models.mealingredient,
-      as: "MealInIngredient",
-      foreignKey: "id"
+      foreignKey: "meal_id"
     });
     Meal.belongsToMany(models.step, {
       through: models.mealstep,
       as: "MealInStep",
-      foreignKey: "id"
+      foreignKey: "meal_id"
     });
   };
 

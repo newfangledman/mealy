@@ -3,7 +3,8 @@
 
 type Meal {
     id: ID!
-    type: String!
+    name: String!
+    description: String!
     ingredients: [Ingredient!]!
     steps: [Step!]!
 }

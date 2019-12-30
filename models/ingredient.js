@@ -16,8 +16,7 @@ export default (sequelize, DataTypes) => {
   Ingredient.associate = function(models) {
     Ingredient.belongsToMany(models.meal, {
       through: models.mealingredient,
-      as: "IngredientsForMeal",
-      foreignKey: "id"
+      foreignKey: "ingredient_id"
     });
   };
   return Ingredient;
