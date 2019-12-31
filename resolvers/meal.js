@@ -1,22 +1,19 @@
-import db from "../models";
-const { ingredient, meal, step } = db;
+// import db from "../models";
+// const { ingredient, meal, step } = db;
 export default {
-  meals() {
-    return meal.findAll({
-      ...associations
-    });
+  Query: {
+    meals() {
+      return db.meal.findAll();
+    },
+    meal(_, {id}, {db}) {
+      return db.meal.findOne({where: { id }});
+    },
   },
-  meal(_, { id }) {
-    return meal.findOne({
-      where: { id },
-      ...associations
-    });
+  Meal: {
+
   }
 };
 
 const associations = {
-  include: [
-    step,
-    ingredientd
-  ]
+  include: []
 };
