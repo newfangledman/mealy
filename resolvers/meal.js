@@ -2,7 +2,7 @@
 // const { ingredient, meal, step } = db;
 export default {
   Query: {
-    meals() {
+    meals(_, args, {db}) {
       return db.meal.findAll();
     },
     meal(_, {id}, {db}) {
@@ -10,10 +10,14 @@ export default {
     },
   },
   Meal: {
-
+    id(obj){
+      return obj.id
+    },
+    name(obj){
+      return obj.name
+    },
+    description(obj){
+      return obj.description
+    }
   }
-};
-
-const associations = {
-  include: []
 };
