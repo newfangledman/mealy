@@ -16,10 +16,7 @@ export default {
 
 const associations = {
   include: [
-
- step,
-
- ingredient
-
+    step,
+    ingredientd
   ]
 };
