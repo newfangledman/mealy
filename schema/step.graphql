@@ -8,12 +8,12 @@ type Step {
 }
 
 type Query {
-    steps: [Step!]!
-    step(id: ID!): Step
+    getAllStepsForMeal: [Step!]!
+    getStep(id: ID!): Step
 }
 
 type Mutation {
-    createStep(name: String, description:String!): Step!
-    updateStep(id: ID!, name: String, description:String!): [Int!]!
-    deleteStep(id: ID!): Int!
+    createMealStep(name: String, description:String!, mealId: ID!): Step!
+    updateMealStep(id: ID!, name: String, description:String!, mealId: ID!): [Int!]!
+    deleteMealStep(id: ID!, mealId: ID!): Int!
 }

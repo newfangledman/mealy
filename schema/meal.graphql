@@ -10,8 +10,8 @@ type Meal {
 }
 
 type Query {
-    meals: [Meal!]!
-    meal(id: ID!): Meal
+    getAllMeals: [Meal!]!
+    getOneMeal(id: ID!): Meal
 }
 
 type Mutation {
