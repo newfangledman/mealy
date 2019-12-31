@@ -8,8 +8,8 @@ type Ingredient {
 }
 
 type Query {
-    getAllIngredients: [Ingredient!]!
-    getOneIngredient(id: ID!): Ingredient
+    ingredients: [Ingredient!]!
+    ingredient(id: ID!): Ingredient
 }
 
 type Mutation {

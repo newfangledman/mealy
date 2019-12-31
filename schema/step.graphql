@@ -8,8 +8,8 @@ type Step {
 }
 
 type Query {
-    getAllStepsForMeal: [Step!]!
-    getStep(id: ID!): Step
+    steps: [Step!]!
+    step(id: ID!): Step
 }
 
 type Mutation {

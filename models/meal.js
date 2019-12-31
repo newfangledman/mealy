@@ -21,7 +21,6 @@ export default (sequelize, DataTypes) => {
     });
     Meal.belongsToMany(models.step, {
       through: models.mealstep,
-      as: "MealInStep",
       foreignKey: "meal_id"
     });
   };

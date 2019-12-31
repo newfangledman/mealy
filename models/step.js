@@ -17,7 +17,6 @@ export default (sequelize, DataTypes) => {
   Step.associate = function(models) {
     Step.belongsToMany(models.meal, {
       through: models.mealstep,
-      as: "StepsForMeal",
       foreignKey: "id"
     });
   };
