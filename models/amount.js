@@ -19,3 +19,5 @@ export default (sequelize, DataTypes) => {
       foreignKey: "amount_id"
     });
   };
+  return Amount
+}
