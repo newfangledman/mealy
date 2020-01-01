@@ -8,16 +8,5 @@ export default {
     meal(_, {id}, {db}) {
       return db.meal.findOne({where: { id }});
     },
-  },
-  Meal: {
-    id(obj){
-      return obj.id
-    },
-    name(obj){
-      return obj.name
-    },
-    description(obj){
-      return obj.description
-    }
   }
 };
